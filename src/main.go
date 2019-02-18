@@ -22,7 +22,7 @@ func Routes() *chi.Mux {
 	)
 
 	router.Route("/alistairfink", func(r chi.Router) {
-		r.Mount("/todo", todo.Routes())
+		r.Mount("/test", Controllers.Routes())
 	})
 
 	return router
@@ -39,5 +39,5 @@ func main() {
 		log.Panicf("Logging err: %s\n", err.Error())
 	}
 
-	log.Fatal(http.ListenAndServe(":8081", router))
+	log.Fatal(http.ListenAndServe(":41692", router))
 }
