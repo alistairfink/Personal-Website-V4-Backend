@@ -21,8 +21,8 @@ func Routes() *chi.Mux {
 		middleware.Recoverer,
 	)
 
-	router.Route("/v1", func(r chi.Router) {
-		r.Mount("/api/todo", todo.Routes())
+	router.Route("/alistairfink", func(r chi.Router) {
+		r.Mount("/todo", todo.Routes())
 	})
 
 	return router
