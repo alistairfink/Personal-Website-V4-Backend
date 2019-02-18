@@ -2,16 +2,13 @@ package todo
 
 import (
 	"net/http"
-	
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
+
+	"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
-type Todo struct {
-	Slug  string `json:"slug"`
-	Title string `json:"title"`
-	Body  string `json:"body"`
-}
 
 func Routes() *chi.Mux {
 	router := chi.NewRouter()
@@ -24,10 +21,10 @@ func Routes() *chi.Mux {
 
 func GetATodo(w http.ResponseWriter, r *http.Request) {
 	todoID := chi.URLParam(r, "todoID")
-	todos := Todo{
-		Slug:  todoID,
-		Title: "Hello world",
-		Body:  "Heloo world from planet earth",
+	todos := Models.About{
+		Id: todoID,
+		Description: []string{"test"},
+		Image: "test",
 	}
 	render.JSON(w, r, todos) // A chi router helper for serializing and returning json
 }
@@ -45,12 +42,12 @@ func CreateTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllTodos(w http.ResponseWriter, r *http.Request) {
-	todos := []Todo{
+	result := []Models.About{
 		{
-			Slug:  "slug",
-			Title: "Hello world",
-			Body:  "Heloo world from planet earth",
+			Id: "test",
+			Description: []string{"test"},
+			Image: "test",
 		},
 	}
-	render.JSON(w, r, todos) // A chi router helper for serializing and returning json
+	render.JSON(w, r, result) // A chi router helper for serializing and returning json
 }

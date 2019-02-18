@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
-	
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
@@ -39,5 +39,5 @@ func main() {
 		log.Panicf("Logging err: %s\n", err.Error())
 	}
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8081", router))
 }
