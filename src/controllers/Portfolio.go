@@ -9,33 +9,33 @@ import (
 	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
-func PortfolioRoutes() *chi.Mux {
+func PortfolioRoutes(controller *Controller) *chi.Mux {
 	router := chi.NewRouter()
-	router.Get("/", GetAllPortfolio)
-	router.Get("/{id}", GetPortfolio)
-	router.Put("/{id}", EditPortfolio)
-	router.Post("/", AddPortfolio)
-	router.Delete("/{id}", DeletePortfolio)
+	router.Get("/", controller.GetAllPortfolio)
+	router.Get("/{id}", controller.GetPortfolio)
+	router.Put("/{id}", controller.EditPortfolio)
+	router.Post("/", controller.AddPortfolio)
+	router.Delete("/{id}", controller.DeletePortfolio)
 	return router
 }
 
-func GetAllPortfolio (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) GetAllPortfolio (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetPortfolio (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) GetPortfolio (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditPortfolio (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) EditPortfolio (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func AddPortfolio (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) AddPortfolio (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func DeletePortfolio (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) DeletePortfolio (w http.ResponseWriter, r *http.Request) {
 
 }
 

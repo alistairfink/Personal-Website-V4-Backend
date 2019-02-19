@@ -24,8 +24,15 @@ func Routes(db *mongo.Client) *chi.Mux {
 		middleware.Recoverer,
 	)
 
+	controller := &Controllers.Controller {
+		DB: db,
+	}
+
 	router.Route("/alistairfink", func(r chi.Router) {
-		r.Mount("/test", Controllers.Routes())
+		r.Mount("/about", Controllers.AboutRoutes(controller))
+		r.Mount("/education",Controllers.EducationRoutes(controller))
+		r.Mount("/experience", Controllers.ExperienceRoutes(controller))
+		r.Mount("/portfolio", Controllers.PortfolioRoutes(controller))
 	})
 
 	return router

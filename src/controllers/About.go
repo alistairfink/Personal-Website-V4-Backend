@@ -9,17 +9,17 @@ import (
 	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
-func AboutRoutes() *chi.Mux {
+func AboutRoutes(controller *Controller) *chi.Mux {
 	router := chi.NewRouter()
-	router.Get("/{id}", GetAbout)
-	router.Put("/", EditAbout)
+	router.Get("/{id}", controller.GetAbout)
+	router.Put("/", controller.EditAbout)
 	return router
 }
 
-func GetAbout (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) GetAbout (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditAbout (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) EditAbout (w http.ResponseWriter, r *http.Request) {
 	
 }

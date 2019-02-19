@@ -9,32 +9,32 @@ import (
 	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
-func ExperienceRoutes() *chi.Mux {
+func ExperienceRoutes(controller *Controller) *chi.Mux {
 	router := chi.NewRouter()
-	router.Get("/", GetAllExperience)
-	router.Get("/{id}", GetExperience)
-	router.Put("/{id}", EditExperience)
-	router.Post("/", AddExperience)
-	router.Delete("/{id}", DeleteExperience)
+	router.Get("/", controller.GetAllExperience)
+	router.Get("/{id}", controller.GetExperience)
+	router.Put("/{id}", controller.EditExperience)
+	router.Post("/", controller.AddExperience)
+	router.Delete("/{id}", controller.DeleteExperience)
 	return router
 }
 
-func GetAllExperience (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) GetAllExperience (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetExperience (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) GetExperience (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditExperience (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) EditExperience (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func AddExperience (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) AddExperience (w http.ResponseWriter, r *http.Request) {
 
 }
 
-func DeleteExperience (w http.ResponseWriter, r *http.Request) {
+func (controller *Controller) DeleteExperience (w http.ResponseWriter, r *http.Request) {
 
 }
