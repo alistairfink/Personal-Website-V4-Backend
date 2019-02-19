@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	"github.com/go-chi/render"
+	// "github.com/go-chi/render"
 
-	"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
+	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
 func EducationRoutes() *chi.Mux {

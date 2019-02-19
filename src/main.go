@@ -9,9 +9,11 @@ import (
 	"github.com/go-chi/render"
 
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/controllers"
+	"github.com/alistairfink/Personal-Website-V4-Backend/src/orm"
+	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
-func Routes() *chi.Mux {
+func Routes(db *mongo.Client) *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(
 		render.SetContentType(render.ContentTypeJSON),
@@ -29,7 +31,8 @@ func Routes() *chi.Mux {
 }
 
 func main() {
-	router := Routes()
+	db := Orm.NewClient("mongodb://localhost:27017")
+	router := Routes(db)
 
 	walkFunc := func(method string, route string, handler http.Handler, middlewares ...func(http.Handler) http.Handler) error {
 		log.Printf("%s %s\n", method, route)
