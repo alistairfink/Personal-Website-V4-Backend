@@ -38,4 +38,3 @@ func (controller *Controller) AddPortfolio (w http.ResponseWriter, r *http.Reque
 func (controller *Controller) DeletePortfolio (w http.ResponseWriter, r *http.Request) {
 
 }
-
