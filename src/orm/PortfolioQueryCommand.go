@@ -4,6 +4,10 @@ import (
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
+func AddPortfolio() *Models.Portfolio {
+	return nil
+}
+
 func GetPortfolio() *Models.Portfolio {
 	return nil
 }

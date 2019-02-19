@@ -4,6 +4,10 @@ import (
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
+func AddExperience() *Models.Experience {
+	return nil
+}
+
 func GetExperience() *Models.Experience {
 	return nil
 }
