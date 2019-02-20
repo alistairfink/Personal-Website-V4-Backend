@@ -10,6 +10,7 @@ import (
 
 type Config struct {
 	Port string
+	ApiKey string
 	Mongo struct {
 		Name string
 		Url string

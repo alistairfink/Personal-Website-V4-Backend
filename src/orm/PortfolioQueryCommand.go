@@ -12,7 +12,7 @@ import (
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/config"
 )
 
-func AddPortfolio(db *mongo.Database, config *Config.Config) *Models.Portfolio {
+func AddPortfolio(db *mongo.Database, config *Config.Config, newModel *Models.Portfolio) *Models.Portfolio {
 	return nil
 }
 
@@ -57,7 +57,7 @@ func GetAllPortfolio(db *mongo.Database, config *Config.Config) *[]Models.Portfo
 	return &portfolios
 }
 
-func EditPortfolio(db *mongo.Database, config *Config.Config) *Models.Portfolio {
+func EditPortfolio(db *mongo.Database, config *Config.Config, updatedModel *Models.Portfolio) *Models.Portfolio {
 	return nil
 }
 

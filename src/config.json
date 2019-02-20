@@ -1,5 +1,6 @@
 {
 	"Port": "41692",
+	"ApiKey": "a",
 	"Mongo": {
 		"Name": "alistairfink",
 		"Url": "mongodb://localhost",
