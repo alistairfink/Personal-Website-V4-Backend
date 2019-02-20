@@ -2,10 +2,9 @@ package Controllers
 
 import (
 	"net/http"
-	"log"
 
 	"github.com/go-chi/chi"
-	// "github.com/go-chi/render"
+	"github.com/go-chi/render"
 
 	//"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/orm"
@@ -20,7 +19,7 @@ func AboutRoutes(controller *Controller) *chi.Mux {
 
 func (controller *Controller) GetAbout (w http.ResponseWriter, r *http.Request) {
 	result := Orm.GetAbout(controller.DB, controller.Config)
-	log.Println(result)
+	render.JSON(w, r, result)
 }
 
 func (controller *Controller) EditAbout (w http.ResponseWriter, r *http.Request) {

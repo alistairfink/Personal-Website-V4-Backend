@@ -1,8 +1,11 @@
 package Models
 
+import (
+	"github.com/mongodb/mongo-go-driver/bson/primitive"
+)
 type About struct
 {
-	Id string `json:"id"`
-	Description []string `json:"desc"` 
-	Image string `json:"img"`	
+	Id primitive.ObjectID `json:"id" bson:"_id"`
+	Description []string `json:"desc" bson:"desc"` 
+	Image string `json:"img" bson:"img"`	
 }

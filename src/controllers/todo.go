@@ -5,8 +5,6 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
-
-	"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 )
 
 
@@ -20,13 +18,9 @@ func Routes() *chi.Mux {
 }
 
 func GetATodo(w http.ResponseWriter, r *http.Request) {
-	todoID := chi.URLParam(r, "todoID")
-	todos := Models.About{
-		Id: todoID,
-		Description: []string{"test"},
-		Image: "test",
-	}
-	render.JSON(w, r, todos) // A chi router helper for serializing and returning json
+	//todoID := chi.URLParam(r, "todoID")
+
+	render.JSON(w, r, nil) // A chi router helper for serializing and returning json
 }
 
 func DeleteTodo(w http.ResponseWriter, r *http.Request) {
@@ -42,12 +36,5 @@ func CreateTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllTodos(w http.ResponseWriter, r *http.Request) {
-	result := []Models.About{
-		{
-			Id: "test",
-			Description: []string{"test"},
-			Image: "test",
-		},
-	}
-	render.JSON(w, r, result) // A chi router helper for serializing and returning json
+	render.JSON(w, r, nil) // A chi router helper for serializing and returning json
 }

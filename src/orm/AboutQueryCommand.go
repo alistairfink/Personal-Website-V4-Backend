@@ -3,6 +3,7 @@ package Orm
 import (
 	"context"
 	"log"
+	"github.com/mongodb/mongo-go-driver/bson"
 
 	"github.com/mongodb/mongo-go-driver/mongo"
 
@@ -12,15 +13,23 @@ import (
 
 func GetAbout(db *mongo.Client, config *Config.Config) *Models.About {
 	collection := db.Database(config.Mongo.Name).Collection("About")
-	var result Models.About
-	//filter := Models.About{}
-	// TODO: Figure out filter
-	err := collection.FindOne(context.TODO(), nil).Decode(&result)
+	curr, err := collection.Find(context.TODO(), bson.D{})
 	if (err != nil) {
 		log.Fatal(err)
 	}
 
-	return &result 
+	var abouts []Models.About
+	for (curr.Next(context.TODO())) {
+		elem := Models.About{}
+		err := curr.Decode(&elem)
+		if (err != nil) {
+			log.Fatal(err)
+		}
+
+		abouts = append(abouts, elem)
+	}
+
+	return &abouts[0]
 }
 
 func EditAbout() *Models.About {
