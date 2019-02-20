@@ -21,14 +21,15 @@ func GetPortfolio(db *mongo.Database, config *Config.Config, id string) *Models.
 	var result Models.Portfolio
 	_id, iderr := primitive.ObjectIDFromHex(id)
 	if (iderr != nil) {
-		log.Fatal(iderr)
+		log.Println(iderr)
+		return nil
 	}
 
 	err := collection.FindOne(context.TODO(), bson.M{"_id": _id}).Decode(&result)
 	if (err != nil) {
-		log.Fatal(err)
+		log.Println(err)
+		return nil
 	}
-	log.Println(result)
 	
 	return &result
 }
@@ -37,7 +38,8 @@ func GetAllPortfolio(db *mongo.Database, config *Config.Config) *[]Models.Portfo
 	collection := db.Collection("Portfolio")
 	curr, err := collection.Find(context.TODO(), bson.D{})
 	if (err != nil) {
-		log.Fatal(err)
+		log.Println(err)
+		return nil
 	}
 
 	var portfolios []Models.Portfolio
@@ -45,7 +47,8 @@ func GetAllPortfolio(db *mongo.Database, config *Config.Config) *[]Models.Portfo
 		elem := Models.Portfolio{}
 		errr := curr.Decode(&elem)
 		if (errr != nil) {
-			log.Fatal(errr)
+			log.Println(errr)
+			return nil
 		}
 
 		portfolios = append(portfolios, elem)
@@ -58,6 +61,24 @@ func EditPortfolio(db *mongo.Database, config *Config.Config) *Models.Portfolio 
 	return nil
 }
 
-func DeletePortfolio(db *mongo.Database, config *Config.Config) bool {
+func DeletePortfolio(db *mongo.Database, config *Config.Config, id string) bool {
+	collection := db. Collection("Portfolio")
+	_id, iderr := primitive.ObjectIDFromHex(id)
+	if (iderr != nil) {
+		log.Println(iderr)
+		return false;
+	}
+
+	res := GetPortfolio(db, config, id)
+	if (res == nil) {
+		return false;
+	}
+
+	_, err := collection.DeleteOne(context.TODO(), bson.M{"_id": _id})
+	if (err != nil) {
+		log.Println(err)
+		return false;
+	}
+
 	return true
 }
