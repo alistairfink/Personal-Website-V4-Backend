@@ -25,7 +25,9 @@ func (controller *Controller) GetAllPortfolio (w http.ResponseWriter, r *http.Re
 }
 
 func (controller *Controller) GetPortfolio (w http.ResponseWriter, r *http.Request) {
-
+	id := chi.URLParam(r, "id")
+	result := Orm.GetPortfolio(controller.DB, controller.Config, id)
+	render.JSON(w, r, result)
 }
 
 func (controller *Controller) EditPortfolio (w http.ResponseWriter, r *http.Request) {

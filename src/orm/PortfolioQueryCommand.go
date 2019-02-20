@@ -6,6 +6,7 @@ import (
 	
 	"github.com/mongodb/mongo-go-driver/bson"
 	"github.com/mongodb/mongo-go-driver/mongo"
+	"github.com/mongodb/mongo-go-driver/bson/primitive"
 
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/models"
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/config"
@@ -15,8 +16,21 @@ func AddPortfolio(db *mongo.Database, config *Config.Config) *Models.Portfolio {
 	return nil
 }
 
-func GetPortfolio(db *mongo.Database, config *Config.Config) *Models.Portfolio {
-	return nil
+func GetPortfolio(db *mongo.Database, config *Config.Config, id string) *Models.Portfolio {
+	collection := db.Collection("Portfolio")
+	var result Models.Portfolio
+	_id, iderr := primitive.ObjectIDFromHex(id)
+	if (iderr != nil) {
+		log.Fatal(iderr)
+	}
+
+	err := collection.FindOne(context.TODO(), bson.M{"_id": _id}).Decode(&result)
+	if (err != nil) {
+		log.Fatal(err)
+	}
+	log.Println(result)
+	
+	return &result
 }
 
 func GetAllPortfolio(db *mongo.Database, config *Config.Config) *[]Models.Portfolio {
