@@ -11,6 +11,7 @@ import (
 type Config struct {
 	Port string
 	Mongo struct {
+		Name string
 		Url string
 		Port string
 	}
