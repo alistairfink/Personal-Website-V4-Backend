@@ -6,6 +6,6 @@ import (
 )
 
 type Controller struct {
-	DB *mongo.Client
+	DB *mongo.Database
 	Config *Config.Config
 }

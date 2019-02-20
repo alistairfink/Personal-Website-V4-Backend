@@ -14,7 +14,7 @@ import (
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/config"
 )
 
-func Routes(db *mongo.Client, config *Config.Config) *chi.Mux {
+func Routes(db *mongo.Database, config *Config.Config) *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(
 		render.SetContentType(render.ContentTypeJSON),
@@ -46,7 +46,7 @@ func main() {
 	}
 
 	db := Orm.NewClient(config.Mongo.Url + ":" + config.Mongo.Port)
-	router := Routes(db, config)
+	router := Routes(db.Database(config.Mongo.Name), config)
 
 	walkFunc := func(method string, route string, handler http.Handler, middlewares ...func(http.Handler) http.Handler) error {
 		log.Printf("%s %s\n", method, route)

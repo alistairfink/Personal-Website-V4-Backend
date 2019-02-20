@@ -4,9 +4,10 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	// "github.com/go-chi/render"
+	"github.com/go-chi/render"
 
 	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
+	"github.com/alistairfink/Personal-Website-V4-Backend/src/orm"
 )
 
 func EducationRoutes(controller *Controller) *chi.Mux {
@@ -20,7 +21,8 @@ func EducationRoutes(controller *Controller) *chi.Mux {
 }
 
 func (controller *Controller) GetAllEducation (w http.ResponseWriter, r *http.Request) {
-
+	result := Orm.GetAllEducation(controller.DB, controller.Config)
+	render.JSON(w, r, result)
 }
 
 func (controller *Controller) GetEducation (w http.ResponseWriter, r *http.Request) {

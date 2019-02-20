@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	// "github.com/go-chi/render"
+	"github.com/go-chi/render"
 
-	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
+	"github.com/alistairfink/Personal-Website-V4-Backend/src/orm"
 )
 
 func ExperienceRoutes(controller *Controller) *chi.Mux {
@@ -20,7 +20,8 @@ func ExperienceRoutes(controller *Controller) *chi.Mux {
 }
 
 func (controller *Controller) GetAllExperience (w http.ResponseWriter, r *http.Request) {
-
+	result := Orm.GetAllExperience(controller.DB, controller.Config)
+	render.JSON(w, r, result)
 }
 
 func (controller *Controller) GetExperience (w http.ResponseWriter, r *http.Request) {

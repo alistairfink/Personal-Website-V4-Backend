@@ -1,13 +1,17 @@
 package Models
 
+import (
+	"github.com/mongodb/mongo-go-driver/bson/primitive"
+)
+
 type Experience struct
 {
-	Id string `json:"id"`
-	Position string `json"position"`
-	Start string `json"start"`
-	End string `json"end"`
-	Company string `json"comp"`
-	Location string `json"location"`
-	Data []string `json"data"`
-	Image string `json"img"`
+	Id primitive.ObjectID `json:"id" bson:"_id"`
+	Position string `json"position" bson:"position"`
+	Start string `json"start" bson:"start"`
+	End string `json"end" bson:"end"`
+	Company string `json"comp" bson:"comp"`
+	Location string `json"location" bson:"location"`
+	Data []string `json"data" bson:"data"`
+	Image string `json"img" bson:"img"`
 }

@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	// "github.com/go-chi/render"
+	"github.com/go-chi/render"
 
-	// "github.com/alistairfink/Personal-Website-V4-Backend/src/models"
+	"github.com/alistairfink/Personal-Website-V4-Backend/src/orm"
 )
 
 func PortfolioRoutes(controller *Controller) *chi.Mux {
@@ -20,7 +20,8 @@ func PortfolioRoutes(controller *Controller) *chi.Mux {
 }
 
 func (controller *Controller) GetAllPortfolio (w http.ResponseWriter, r *http.Request) {
-
+	result := Orm.GetAllPortfolio(controller.DB, controller.Config)
+	render.JSON(w, r, result)
 }
 
 func (controller *Controller) GetPortfolio (w http.ResponseWriter, r *http.Request) {

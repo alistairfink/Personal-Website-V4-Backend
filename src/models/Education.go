@@ -1,16 +1,20 @@
 package Models
 
+import (
+	"github.com/mongodb/mongo-go-driver/bson/primitive"
+)
+
 type Education struct
 {
-	Id string `json:"id"`
-	School string `json"school"`
-	Start string `json"start"`
-	End string `json"end"`
-	Scholarship []string `json"scholarships"`
-	Award []string `json"awards"`
-	Location string `json"location"`
-	Title string `json"title"`
-	NotableProject []string `json"notableProj"`
-	ExtraCurcicular []string `json"extraCuric"`
-	Image string `json"img"`	
+	Id primitive.ObjectID `json:"id" bson:"_id"`
+	School string `json"school" bson:"school"`
+	Start string `json"start" bson:"start"`
+	End string `json"end" bson:"end"`
+	Scholarship []string `json"scholarships" bson:"scholarships"`
+	Award []string `json"awards" bson:"awards"`
+	Location string `json"location" bson:"location"`
+	Title string `json"title" bson:"title"`
+	NotableProject []string `json"notableProj" bson:"notableProj"`
+	ExtraCurcicular []string `json"extraCuric" bson:"extraCuric"`
+	Image string `json"img" bson:"img`	
 }
