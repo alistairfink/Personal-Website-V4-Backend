@@ -84,7 +84,7 @@ func (controller *Controller) AddPortfolio (w http.ResponseWriter, r *http.Reque
 			return
 		}
 
-		var portfolioItem Models.Portfolio
+		var portfolioItem Models.CreatePortfolio
 		err := json.Unmarshal(b, &portfolioItem)
 		if (err != nil) {
 			http.Error(w, "Invalid Request", http.StatusBadRequest)

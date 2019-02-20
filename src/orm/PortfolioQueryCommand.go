@@ -12,8 +12,20 @@ import (
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/config"
 )
 
-func AddPortfolio(db *mongo.Database, config *Config.Config, newModel *Models.Portfolio) *Models.Portfolio {
-	return nil
+func AddPortfolio(db *mongo.Database, config *Config.Config, newModel *Models.CreatePortfolio) *Models.Portfolio {
+	collection := db.Collection("Portfolio")
+	res, err := collection.InsertOne(context.TODO(), newModel)
+	if (err != nil) {
+		log.Println(err)
+		return nil
+	}
+
+	result := GetPortfolio(db, config, res.InsertedID.(primitive.ObjectID).Hex())
+	if (result == nil) {
+		return nil
+	}
+
+	return result
 }
 
 func GetPortfolio(db *mongo.Database, config *Config.Config, id string) *Models.Portfolio {
