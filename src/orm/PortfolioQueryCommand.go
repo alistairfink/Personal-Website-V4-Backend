@@ -70,7 +70,24 @@ func GetAllPortfolio(db *mongo.Database, config *Config.Config) *[]Models.Portfo
 }
 
 func EditPortfolio(db *mongo.Database, config *Config.Config, updatedModel *Models.Portfolio) *Models.Portfolio {
-	return nil
+	collection := db.Collection("Portfolio")
+	exists := GetPortfolio(db, config, updatedModel.Id.Hex())
+	if (exists == nil) {
+		return nil
+	}
+
+	res := collection.FindOneAndReplace(context.TODO(), bson.M{"_id": updatedModel.Id}, updatedModel)
+	if (res.Err() != nil) {
+		log.Println(res.Err())
+		return nil
+	}
+
+	result := GetPortfolio(db, config, updatedModel.Id.Hex())
+	if (result == nil) {
+		return nil;
+	}
+
+	return result
 }
 
 func DeletePortfolio(db *mongo.Database, config *Config.Config, id string) bool {
