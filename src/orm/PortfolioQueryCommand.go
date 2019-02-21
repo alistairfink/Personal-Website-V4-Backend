@@ -91,7 +91,7 @@ func EditPortfolio(db *mongo.Database, config *Config.Config, updatedModel *Mode
 }
 
 func DeletePortfolio(db *mongo.Database, config *Config.Config, id string) bool {
-	collection := db. Collection("Portfolio")
+	collection := db.Collection("Portfolio")
 	_id, iderr := primitive.ObjectIDFromHex(id)
 	if (iderr != nil) {
 		log.Println(iderr)
