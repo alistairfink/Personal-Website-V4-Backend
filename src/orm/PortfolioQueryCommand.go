@@ -84,7 +84,7 @@ func EditPortfolio(db *mongo.Database, config *Config.Config, updatedModel *Mode
 
 	result := GetPortfolio(db, config, updatedModel.Id.Hex())
 	if (result == nil) {
-		return nil;
+		return nil
 	}
 
 	return result
@@ -100,13 +100,13 @@ func DeletePortfolio(db *mongo.Database, config *Config.Config, id string) bool 
 
 	res := GetPortfolio(db, config, id)
 	if (res == nil) {
-		return false;
+		return false
 	}
 
 	_, err := collection.DeleteOne(context.TODO(), bson.M{"_id": _id})
 	if (err != nil) {
 		log.Println(err)
-		return false;
+		return false
 	}
 
 	return true

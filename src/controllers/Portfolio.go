@@ -3,7 +3,6 @@ package Controllers
 import (
 	"net/http"
 	"io/ioutil"
-	"log"
 	"encoding/json"
 
 	"github.com/go-chi/chi"
@@ -46,7 +45,6 @@ func (controller *Controller) GetPortfolio (w http.ResponseWriter, r *http.Reque
 
 func (controller *Controller) EditPortfolio (w http.ResponseWriter, r *http.Request) {
 	apiKey := chi.URLParam(r, "key")
-		log.Println("test")
 	if (apiKey == controller.Config.ApiKey) {
 		b, readErr := ioutil.ReadAll(r.Body)
 		defer r.Body.Close()
@@ -71,6 +69,7 @@ func (controller *Controller) EditPortfolio (w http.ResponseWriter, r *http.Requ
 		render.JSON(w, r, result)
 		return 
 	}
+
 	http.Error(w, "Invalid Api Key", http.StatusBadRequest)
 }
 
@@ -100,6 +99,7 @@ func (controller *Controller) AddPortfolio (w http.ResponseWriter, r *http.Reque
 		render.JSON(w, r, result)
 		return 
 	}
+
 	http.Error(w, "Invalid Api Key", http.StatusBadRequest)
 }
 
@@ -115,5 +115,6 @@ func (controller *Controller) DeletePortfolio (w http.ResponseWriter, r *http.Re
 		}
 		return 
 	}
+
 	http.Error(w, "Invalid Api Key", http.StatusBadRequest)
 }
