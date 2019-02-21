@@ -13,7 +13,7 @@ import (
 
 func GetAbout(db *mongo.Database, config *Config.Config) *Models.About {
 	collection := db.Collection("About")
-	curr, err := collection.Find(context.TODO(), bson.D{})
+	curr, err := collection.Find(context.TODO(), bson.M{})
 	if (err != nil) {
 		log.Println(err)
 		return nil

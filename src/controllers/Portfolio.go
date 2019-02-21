@@ -113,6 +113,7 @@ func (controller *Controller) DeletePortfolio (w http.ResponseWriter, r *http.Re
 		} else {
 			http.Error(w, "Delete Portfolio Item Failed", http.StatusBadRequest)
 		}
+		
 		return 
 	}
 

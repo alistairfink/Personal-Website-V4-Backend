@@ -48,7 +48,7 @@ func GetPortfolio(db *mongo.Database, config *Config.Config, id string) *Models.
 
 func GetAllPortfolio(db *mongo.Database, config *Config.Config) *[]Models.Portfolio {
 	collection := db.Collection("Portfolio")
-	curr, err := collection.Find(context.TODO(), bson.D{})
+	curr, err := collection.Find(context.TODO(), bson.M{})
 	if (err != nil) {
 		log.Println(err)
 		return nil
