@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
-	"github.com/mongodb/mongo-go-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo"
 
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/controllers"
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/orm"

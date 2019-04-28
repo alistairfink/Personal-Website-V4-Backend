@@ -3,20 +3,24 @@ package Orm
 import (
 	"context"
 	"log"
+	"time"
 
-	"github.com/mongodb/mongo-go-driver/mongo"
-	"github.com/mongodb/mongo-go-driver/mongo/readpref"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func NewClient(connectionString string) *mongo.Client {
-	client, err := mongo.Connect(context.TODO(), connectionString)
+	client, err := mongo.NewClient(options.Client().ApplyURI(connectionString))
 	if (err != nil) {
-		log.Fatal(err)
+		log.Fatal("Client Creation Failed")
 	}
 
-	err2 := client.Ping(context.TODO(), readpref.Primary())
-	if (err2 != nil) {
-		log.Fatal(err)
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	defer cancel()
+
+	err = client.Connect(ctx)
+	if (err != nil) {
+		log.Fatal("Client Connection Failed")
 	}
 
 	return client

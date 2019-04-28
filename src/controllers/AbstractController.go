@@ -1,7 +1,7 @@
 package Controllers
 
 import (
-	"github.com/mongodb/mongo-go-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo"
 	"github.com/alistairfink/Personal-Website-V4-Backend/src/config"
 )
 
